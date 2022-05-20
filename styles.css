@@ -1,0 +1,31 @@
+.lib {
+    text-align: center;
+}
+
+
+.inputcontainer {
+    display: flex;
+    background-color: red;
+    height: 300px;
+}
+
+.input-box {
+    background-color: blue;
+    width: 300px;
+}
+
+.input-line {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.input {
+    float: right;
+    margin-right: 20px;
+    border-color: red;
+}
+
+.submit-book-button {
+    margin-top: 50px;
+    margin-left: 110px;
+}
