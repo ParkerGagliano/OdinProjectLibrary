@@ -1,3 +1,8 @@
+
+
+
+
+
 .lib {
     text-align: center;
 }
@@ -33,9 +38,20 @@
 .test-input {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(12, 30px);
+    grid-template-rows: repeat(3, 90px);
     row-gap: 15px;
+  }
+
+  .book-preview {
+    transform: rotate(-90deg);
+    align-self: center;
+  }
+
+  .book-preview-container {
+      border-radius: 10px;
+      flex-direction: column;
+      display: flex;
   }
 
 

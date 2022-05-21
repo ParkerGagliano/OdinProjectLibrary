@@ -26,14 +26,35 @@ function renderBooks() {
     testInput.innerHTML = '';
     for(let book of bookShelf) {
         let author = document.createElement('p')
-        author.innerText = book.author
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
-        console.log(book.backgroundcolor)
-        author.style.backgroundColor = book.backgroundcolor
-        testInput.appendChild(author)
+        let bookpreview = document.createElement('div')
+        let readMark = document.createElement('p')
+        readMark.innerText = '✓'
+        bookpreview.style.backgroundColor = book.backgroundcolor
+        bookpreview.classList.add('book-preview-container')
+        abvs = createAbrev(book.title, book.author)
+        author.innerText = abvs[0]
+        author.classList.add('book-preview')
+        readMark.classList.add('book-preview')
+        bookpreview.appendChild(author)
+        if (book.read) {
+            bookpreview.style.flexDirection = 'column'
+            bookpreview.appendChild(readMark)
+        }
+        testInput.appendChild(bookpreview)
+
     }
+}
+
+
+
+function createAbrev(title, author) {
+    titleAbv = title.match(/\b(\w)/g).join('');
+    authorAbv = author.match(/\b(\w)/g).join('');
+    return [titleAbv, authorAbv]
 
 }
+
+
 
 
 class Book {
@@ -45,5 +66,4 @@ class Book {
         this.read = read
         this.backgroundcolor = backgroundcolor
     }
-    
 }
