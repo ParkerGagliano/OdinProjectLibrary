@@ -5,13 +5,13 @@
 
 .inputcontainer {
     display: flex;
-    background-color: red;
     height: 300px;
 }
 
 .input-box {
     background-color: blue;
     width: 300px;
+    display: block;
 }
 
 .input-line {
@@ -31,7 +31,12 @@
 }
 
 .test-input {
-    background-color: green;
-    display: block;
-    height: 40px;
-}
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 15px;
+  }
+
+
+
