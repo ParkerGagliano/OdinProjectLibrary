@@ -6,9 +6,12 @@ const bookRead = document.getElementById('book-read')
 let testInput = document.getElementById('test-input')
 const modalContainer = document.getElementById('modal-container')
 const modalClose = document.getElementById('close-modal')
-let joemama
+const generateBooks = document.getElementById('generate-books')
+
 let bookShelf = []
 let bookcount = 0
+
+const bookExamples = [["K J Alphons", 'Accelerating India: 7 Years of Modi Government', 230],["J K Rowling", "Harry Potter and the Sorcerer's Stone", 299]]
 
 
 addBookButton.addEventListener('click', function() {
@@ -25,17 +28,25 @@ function createBook(bookcount, title, author, pages, read, backgroundcolor) {
     renderBooks()
 }
 
+generateBooks.addEventListener('click', function() {
+    autoFillBooks(bookExamples)
+})
+
+
 function renderBooks() {
     testInput.innerHTML = '';
     for(let book of bookShelf) {
         let author = document.createElement('p')
         let readMark = document.createElement('p')
         let bookpreview = document.createElement('div')
+        let modalTitle = document.createElement('p')
+        let tempPara = document.createElement('p')
+        tempPara.setAttribute('id', 'temp-para')
         readMark.innerText = '✓'
         bookpreview.style.backgroundColor = book.backgroundcolor
         bookpreview.classList.add('book-preview-container')
         abvs = createAbrev(book.title, book.author)
-        author.innerText = abvs[0]
+        author.innerText = abvs[1]
         author.classList.add('book-preview')
         readMark.classList.add('book-preview')
         bookpreview.appendChild(author)
@@ -43,17 +54,21 @@ function renderBooks() {
             bookpreview.appendChild(readMark)
         }
         testInput.appendChild(bookpreview)
-
         bookpreview.addEventListener('click', function() {
+            tempPara.innerText = ''
             modalContainer.classList.add('show')
-            modalContainer.appendChild(document.createElement('p').innerText=book.title)
-        })
+            tempPara.innerText = book.author
+            modalContainer.appendChild(tempPara)
+            })
+        }
         modalClose.addEventListener('click', function() {
             console.log('joe')
             modalContainer.classList.remove('show')
         })
     }
-}
+
+
+
 
 
 function createAbrev(title, author) {
@@ -83,3 +98,15 @@ class Book {
 joemama.addEventListener('click', function() {
     testInput.innerHTML = ''
 })
+
+function randomElement(books) {
+    return books[Math.floor(Math.random()*books.length)]
+  }
+
+function autoFillBooks(books) {
+    let book = randomElement(books)
+    console.log(book)
+    createBook(bookcount, book[1], book[0], book[3], Math.random() > .5,`#${Math.floor(Math.random()*16777215).toString(16)}`)
+
+
+}
