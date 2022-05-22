@@ -4,6 +4,9 @@ const bookAuthor = document.getElementById('book-author')
 const bookPages = document.getElementById('book-pages')
 const bookRead = document.getElementById('book-read')
 let testInput = document.getElementById('test-input')
+const modalContainer = document.getElementById('modal-container')
+const modalClose = document.getElementById('close-modal')
+let joemama
 let bookShelf = []
 let bookcount = 0
 
@@ -26,8 +29,8 @@ function renderBooks() {
     testInput.innerHTML = '';
     for(let book of bookShelf) {
         let author = document.createElement('p')
-        let bookpreview = document.createElement('div')
         let readMark = document.createElement('p')
+        let bookpreview = document.createElement('div')
         readMark.innerText = '✓'
         bookpreview.style.backgroundColor = book.backgroundcolor
         bookpreview.classList.add('book-preview-container')
@@ -37,14 +40,20 @@ function renderBooks() {
         readMark.classList.add('book-preview')
         bookpreview.appendChild(author)
         if (book.read) {
-            bookpreview.style.flexDirection = 'column'
             bookpreview.appendChild(readMark)
         }
         testInput.appendChild(bookpreview)
 
+        bookpreview.addEventListener('click', function() {
+            modalContainer.classList.add('show')
+            modalContainer.appendChild(document.createElement('p').innerText=book.title)
+        })
+        modalClose.addEventListener('click', function() {
+            console.log('joe')
+            modalContainer.classList.remove('show')
+        })
     }
 }
-
 
 
 function createAbrev(title, author) {
@@ -67,3 +76,10 @@ class Book {
         this.backgroundcolor = backgroundcolor
     }
 }
+
+
+
+
+joemama.addEventListener('click', function() {
+    testInput.innerHTML = ''
+})
