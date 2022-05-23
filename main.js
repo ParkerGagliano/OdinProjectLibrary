@@ -15,7 +15,6 @@ const bookExamples = [["K J Alphons", 'Accelerating India: 7 Years of Modi Gover
 
 
 addBookButton.addEventListener('click', function() {
-    console.log(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
     let z = document.createElement('p')
     z.innerText = bookTitle.value
     createBook(bookcount, bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked, `#${Math.floor(Math.random()*16777215).toString(16)}`)
@@ -55,21 +54,27 @@ function renderBooks() {
         }
         testInput.appendChild(bookpreview)
         bookpreview.addEventListener('click', function() {
-            tempPara.innerText = ''
-            modalContainer.classList.add('show')
-            tempPara.innerText = book.author
-            modalContainer.appendChild(tempPara)
+            createModal([book.author, book.title, book.pages])
             })
         }
-        modalClose.addEventListener('click', function() {
-            console.log('joe')
-            modalContainer.classList.remove('show')
-        })
+
+
+
+        function createModal(bookinfo) {
+            modalContainer.innerHTML = ''
+            for(let i of bookinfo) {
+                let tempTest = document.createElement('p')
+                console.log(i)
+                tempTest.innerHTML = i
+                modalContainer.appendChild(tempTest)
+            }
+
+            modalContainer.classList.add('show')
+            closeButton.addEventListener('click', function() {
+                modalContainer.classList.remove('show')
+            })
+        }
     }
-
-
-
-
 
 function createAbrev(title, author) {
     titleAbv = title.match(/\b(\w)/g).join('');
@@ -105,8 +110,7 @@ function randomElement(books) {
 
 function autoFillBooks(books) {
     let book = randomElement(books)
-    console.log(book)
-    createBook(bookcount, book[1], book[0], book[3], Math.random() > .5,`#${Math.floor(Math.random()*16777215).toString(16)}`)
+    createBook(bookcount, book[1], book[0], book[2], Math.random() > .5,`#${Math.floor(Math.random()*16777215).toString(16)}`)
 
 
 }
