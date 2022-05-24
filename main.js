@@ -12,9 +12,10 @@ let readMark = document.createElement('p')
 readMark.innerText = '✓'
 let bookShelf = []
 let bookcount = 0
+console.log('WHAT')
+let counter = 0
 
-
-const bookExamples = [["K J Alphons", 'Accelerating India: 7 Years of Modi Government', 230],["J K Rowling", "Harry Potter and the Sorcerer's Stone", 299]]
+const bookExamples = [["K J Alphons", 'Accelerating India: 7 Years of Modi Government', 230],["J K Rowling", "Harry Potter and the Sorcerer's Stone", 299], ["Joes Mama", 'Accelerating Joe: 2 Years of Government', 2222],["john Smith", 'Joes mama', 2]]
 
 
 addBookButton.addEventListener('click', function() {
@@ -25,13 +26,13 @@ addBookButton.addEventListener('click', function() {
 })
 
 function createBook(bookcount, title, author, pages, read, backgroundcolor) {
-    bookcount += 1
-    bookShelf.push(new Book(bookcount, title, author, pages, read, backgroundcolor))
+    bookcount = bookcount + 1
+    bookShelf.push(new Book(bookShelf.length, title, author, pages, read, backgroundcolor))
     renderBooks()
 }
 
 generateBooks.addEventListener('click', function() {
-    autoFillBooks(bookExamples)
+    autoFillBooks(bookExamples, counter)
 })
 
 
@@ -45,6 +46,7 @@ function renderBooks() {
         let tempPara = document.createElement('p')
         tempPara.setAttribute('id', 'temp-para')
         readMark.innerText = '✓'
+        readMark.setAttribute('id', `book-checkmark${book.bookcount}`)
         bookpreview.style.backgroundColor = book.backgroundcolor
         bookpreview.classList.add('book-preview-container')
         abvs = createAbrev(book.title, book.author)
@@ -59,32 +61,30 @@ function renderBooks() {
         bookpreview.addEventListener('click', function() {
             createModal([['Author: ',book.author], ['Title: ',book.title], ['Page Count: ',book.pages]], book)
             })
-        }
+}
 
 
 
-        function createModal(bookinfo, book) {
-            modalContainer.innerHTML = ''
-            for(let i of bookinfo) {
-                let tempTest = document.createElement('p')
-                console.log(i)
-                tempTest.innerHTML = i[0] + i[1]
-                tempTest.classList.add('book-info-modal')
-                modalContainer.appendChild(tempTest)
-            }
-            modalContainer.appendChild(modalClose)
-            modalClose.addEventListener('change', function() {         
-                if (this.checked) {
-                    book.read = true
-                    console.log(book)
-                    renderBooks()
-                } else {
-                    book.read = false
-                    renderBooks()
-                }
-              })
-            }
+function createModal(bookinfo, book) {
+    modalContainer.innerHTML = ''
+    for(let i of bookinfo) {
+        let tempTest = document.createElement('p')
+        tempTest.innerHTML = i[0] + i[1]
+        tempTest.classList.add('book-info-modal')
+        modalContainer.appendChild(tempTest)
     }
+    modalContainer.appendChild(modalClose)
+    modalClose.addEventListener('change', function() {       
+        if (this.checked) {
+            bookShelf[book.bookcount].read=true
+            renderBooks()
+        } else {
+            bookShelf[book.bookcount].read=false
+            renderBooks()
+        }
+    })
+    }
+}
 
 function createAbrev(title, author) {
     titleAbv = title.match(/\b(\w)/g).join('');
@@ -109,14 +109,24 @@ class Book {
 
 
 
-
 function randomElement(books) {
     return books[Math.floor(Math.random()*books.length)]
   }
 
-function autoFillBooks(books) {
+
+
+
+function autoFillBooks(books, counter) {
+    counter++
     let book = randomElement(books)
     createBook(bookcount, book[1], book[0], book[2], Math.random() > .5,`#${Math.floor(Math.random()*16777215).toString(16)}`)
+    if (counter < 100) {
+        setTimeout(function(){
+            autoFillBooks(books,counter);
+        }, 10); 
+    }
+
+
 
 
 }

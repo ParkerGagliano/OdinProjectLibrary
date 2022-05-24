@@ -54,7 +54,6 @@
     background-color: red;
     flex-direction: column;
     opacity: 1;
-    /*pointer-events: none;*/
     width: 300px;
     height: 300px;
   }
@@ -62,7 +61,7 @@
 
 .modal-container.show {
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: all;
     z-index: 1000; 
 	position: fixed;
 }
@@ -80,6 +79,9 @@
 
 .book-info-modal {
     flex: 1;
+    
     background-color: blueviolet;
-    display: inline-block;
+    display: flex;
+    justify-content: left;
+
 }
