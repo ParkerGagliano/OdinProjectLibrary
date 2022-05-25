@@ -1,87 +1,79 @@
-.lib {
+ html {
+     background-color: #FF9241;
+ }
+
+ .lib {
     text-align: center;
-}
-
-
-.inputcontainer {
+ }
+  
+ .inputcontainer {
     display: flex;
     height: 300px;
-}
-
-.input-box {
-    background-color: blue;
+  }
+  .input-box {
+    background-color: #FF8303;
     width: 300px;
     display: block;
-}
-
-.input-line {
+    border-radius: 10px;
+ }
+  .input-line {
     margin-left: 10px;
     margin-top: 20px;
-}
-
-.input {
+ }
+  .input {
     float: right;
     margin-right: 20px;
     border-color: red;
-}
-
-.submit-book-button {
+ }
+  .submit-book-button {
     margin-top: 50px;
     margin-left: 110px;
-}
-
-.test-input {
+ }
+  .test-input {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(auto-fill, 30px);
     grid-template-rows: repeat(3, 90px);
     row-gap: 15px;
   }
-
-  .book-preview {
+   .book-preview {
     transform: rotate(-90deg);
   }
-
-
+  
   .book-preview-container {
-      border-radius: 10px;
+      border-radius: 5px;
       flex-direction: column;
   }
-
-
-.modal-container {
+  
+ .modal-container {
+    border-radius: 10px;
     display: flex;
-    background-color: red;
+    background-color: #FF8303;
     flex-direction: column;
     opacity: 1;
     width: 300px;
     height: 300px;
   }
-
-
-.modal-container.show {
+  
+ .modal-container.show {
     opacity: 1;
     pointer-events: all;
-    z-index: 1000; 
-	position: fixed;
-}
-
-.modal {
+    z-index: 1000;
+    position: fixed;
+ }
+  .modal {
     vertical-align: top;
     display: inline-block;
-}
-
-.close-modal {
+ }
+  .close-modal {
     margin-left: 40px;
-}
-
-
-
-.book-info-modal {
+ }
+  
+  .book-info-modal {
     flex: 1;
-    
-    background-color: blueviolet;
     display: flex;
     justify-content: left;
-
-}
+  }
+  
+ 
+ 

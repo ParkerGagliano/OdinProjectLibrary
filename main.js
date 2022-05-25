@@ -6,8 +6,6 @@ const bookRead = document.getElementById('book-read')
 let testInput = document.getElementById('test-input')
 const modalContainer = document.getElementById('modal-container')
 const generateBooks = document.getElementById('generate-books')
-const modalClose = document.createElement('input')
-modalClose.type = ('checkbox')
 let readMark = document.createElement('p')
 readMark.innerText = '✓'
 let bookShelf = []
@@ -67,6 +65,8 @@ function renderBooks() {
 
 function createModal(bookinfo, book) {
     modalContainer.innerHTML = ''
+    const modalClose = document.createElement('input')
+    modalClose.type = ('checkbox')
     for(let i of bookinfo) {
         let tempTest = document.createElement('p')
         tempTest.innerHTML = i[0] + i[1]
@@ -76,10 +76,12 @@ function createModal(bookinfo, book) {
     modalContainer.appendChild(modalClose)
     modalClose.addEventListener('change', function() {       
         if (this.checked) {
-            bookShelf[book.bookcount].read=true
+            book.read = true
+            //bookShelf[book.bookcount].read=true
             renderBooks()
         } else {
-            bookShelf[book.bookcount].read=false
+            book.read = false
+            //bookShelf[book.bookcount].read=true   Alternative option found while trying to fix other bug
             renderBooks()
         }
     })
@@ -125,10 +127,5 @@ function autoFillBooks(books, counter) {
             autoFillBooks(books,counter);
         }, 10); 
     }
-
-
-
-
 }
-
 
