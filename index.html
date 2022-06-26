@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Odin Project Books</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -12,21 +12,23 @@
     <div class="inputcontainer">
       <div class="input-box">
         <div class="input-line">
-          Book Title: <input class="input" id="book-title" type="text" />
+          Book Title:
+          <input class="input" id="book-title" type="text" required />
         </div>
         <div class="input-line">
-          Book Author: <input class="input" id="book-author" type="text" />
+          Book Author:
+          <input class="input" id="book-author" type="text" required />
         </div>
         <div class="input-line">
-          Book Pages: <input class="input" id="book-pages" type="text" />
+          Book Pages:
+          <input class="input" id="book-pages" type="text" required />
         </div>
+
         <div class="input-line">
           Has the book been read? Check if so:
           <input class="input" id="book-read" type="checkbox" />
+          <input type="submit" id="submit-book-button" />
         </div>
-        <button class="submit-book-button" , id="submit-book-button">
-          Add book
-        </button>
         <button class="submit-book-button" , id="generate-books">
           Randomly Generate Books
         </button>

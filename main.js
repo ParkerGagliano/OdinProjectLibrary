@@ -6,15 +6,13 @@ const bookRead = document.getElementById('book-read')
 let testInput = document.getElementById('test-input')
 const modalContainer = document.getElementById('modal-container')
 const generateBooks = document.getElementById('generate-books')
-let readMark = document.createElement('p')
-readMark.innerText = '✓'
+let readMark = document.createElement('p').innerText = '✓'
 let bookShelf = []
 let bookcount = 0
-console.log('WHAT')
 let counter = 0
 
-const bookExamples = [["K J Alphons", 'Accelerating India: 7 Years of Modi Government', 230],["J K Rowling", "Harry Potter and the Sorcerer's Stone", 299], ["Joes Mama", 'Accelerating Joe: 2 Years of Government', 2222],["john Smith", 'Joes mama', 2]]
-
+const bookExamples = [["K J Alphons", 'Accelerating India: 7 Years of Modi Government', 230],["J K Rowling", "Harry Potter and the Sorcerer's Stone", 299], 
+["J.R.R. Tolkien", 'Lord of the Rings', 2222],["Agatha Christie", 'And Then There Were None', 123]]
 
 addBookButton.addEventListener('click', function() {
     let z = document.createElement('p')
@@ -25,14 +23,17 @@ addBookButton.addEventListener('click', function() {
 
 function createBook(bookcount, title, author, pages, read, backgroundcolor) {
     bookcount = bookcount + 1
-    bookShelf.push(new Book(bookShelf.length, title, author, pages, read, backgroundcolor))
+    if(title, author, pages) {
+        bookShelf.push(new Book(bookShelf.length, title, author, pages, read, backgroundcolor))
+    } else {
+        alert('Please add title, author, and pages to make a book')
+    }
     renderBooks()
 }
 
 generateBooks.addEventListener('click', function() {
     autoFillBooks(bookExamples, counter)
 })
-
 
 function renderBooks() {
     testInput.innerHTML = '';
@@ -61,8 +62,6 @@ function renderBooks() {
             })
 }
 
-
-
 function createModal(bookinfo, book) {
     modalContainer.innerHTML = ''
     const modalClose = document.createElement('input')
@@ -73,15 +72,20 @@ function createModal(bookinfo, book) {
         tempTest.classList.add('book-info-modal')
         modalContainer.appendChild(tempTest)
     }
+    modalClose.checked = book.read
+    modalClose.classList.add('bottom-checkbox')
+    let isChecked = document.createElement('p')
+    isChecked.innerText = 'Has the book been read?'
+    isChecked.classList.add('book-info-modal')
+    isChecked.appendChild(modalClose)
+    modalContainer.appendChild(isChecked)
     modalContainer.appendChild(modalClose)
     modalClose.addEventListener('change', function() {       
         if (this.checked) {
             book.read = true
-            //bookShelf[book.bookcount].read=true
             renderBooks()
         } else {
             book.read = false
-            //bookShelf[book.bookcount].read=true   Alternative option found while trying to fix other bug
             renderBooks()
         }
     })
@@ -95,9 +99,6 @@ function createAbrev(title, author) {
 
 }
 
-
-
-
 class Book {
     constructor(bookcount, title, author, pages, read, backgroundcolor) {
         this.bookcount =  bookcount
@@ -109,14 +110,9 @@ class Book {
     }
 }
 
-
-
 function randomElement(books) {
     return books[Math.floor(Math.random()*books.length)]
   }
-
-
-
 
 function autoFillBooks(books, counter) {
     counter++

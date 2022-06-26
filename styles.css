@@ -1,7 +1,6 @@
  html {
      background-color: #FF9241;
  }
-
  .lib {
     text-align: center;
  }
@@ -9,6 +8,7 @@
  .inputcontainer {
     display: flex;
     height: 300px;
+    margin-bottom: 5px;
   }
   .input-box {
     background-color: #FF8303;
@@ -23,11 +23,11 @@
   .input {
     float: right;
     margin-right: 20px;
-    border-color: red;
+    border-color: black;
  }
   .submit-book-button {
     margin-top: 50px;
-    margin-left: 110px;
+    margin-left: 60px;
  }
   .test-input {
     flex-grow: 1;
@@ -39,12 +39,10 @@
    .book-preview {
     transform: rotate(-90deg);
   }
-  
   .book-preview-container {
       border-radius: 5px;
       flex-direction: column;
   }
-  
  .modal-container {
     border-radius: 10px;
     display: flex;
@@ -54,7 +52,6 @@
     width: 300px;
     height: 300px;
   }
-  
  .modal-container.show {
     opacity: 1;
     pointer-events: all;
@@ -68,11 +65,15 @@
   .close-modal {
     margin-left: 40px;
  }
-  
   .book-info-modal {
     flex: 1;
     display: flex;
-    justify-content: left;
+    justify-content: center;
+  }
+  .bottom-checkbox {
+    outline-style: inset;
+    outline-color: black;
+    outline-width: 2px;
   }
   
  
